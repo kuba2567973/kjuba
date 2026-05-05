@@ -7732,13 +7732,16 @@ local script = G2L["14d"];
 		local center = cam.ViewportSize / 2
 	
 		for _, plr in ipairs(Players:GetPlayers()) do
+			-- Added the ForceField check here
 			if plr == lp or (aim_TC and plr.Team == lp.Team) then continue end
 	
 			local char = plr.Character
 			local part = char and char:FindFirstChild(TARGET_PART)
 			local hum = char and char:FindFirstChildOfClass("Humanoid")
+			local hasFF = char and char:FindFirstChildOfClass("ForceField") -- Check for FF
 	
-			if part and hum and hum.Health > 0 then
+			-- Ensure the player exists, is alive, and DOES NOT have a ForceField
+			if part and hum and hum.Health > 0 and not hasFF then
 				local screenPos, onScreen = cam:WorldToViewportPoint(part.Position)
 	
 				if onScreen then
