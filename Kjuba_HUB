@@ -7,7 +7,7 @@
  Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER 
 ]=]
 
--- Instances: 555 | Scripts: 159 | Modules: 1 | Tags: 0
+-- Instances: 576 | Scripts: 168 | Modules: 1 | Tags: 0
 local G2L = {};
 
 -- StarterGui.KJUBAHUBB
@@ -5052,6 +5052,164 @@ G2L["22b"] = Instance.new("ModuleScript", G2L["1"]);
 G2L["22b"]["Name"] = [[KJUBAHUBBSettingsManager]];
 
 
+-- StarterGui.KJUBAHUBB.hltbar
+G2L["22c"] = Instance.new("CanvasGroup", G2L["1"]);
+G2L["22c"]["BorderSizePixel"] = 0;
+G2L["22c"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["22c"]["Size"] = UDim2.new(0.168, 0, 0.047, 0);
+G2L["22c"]["Position"] = UDim2.new(0.415, 0, 0.842, 0);
+G2L["22c"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["22c"]["Name"] = [[hltbar]];
+
+
+-- StarterGui.KJUBAHUBB.hltbar.LocalScript
+G2L["22d"] = Instance.new("LocalScript", G2L["22c"]);
+
+
+
+-- StarterGui.KJUBAHUBB.hltbar.UICorner
+G2L["22e"] = Instance.new("UICorner", G2L["22c"]);
+G2L["22e"]["CornerRadius"] = UDim.new(0.2, 0);
+
+
+-- StarterGui.KJUBAHUBB.hltbar.bar
+G2L["22f"] = Instance.new("Frame", G2L["22c"]);
+G2L["22f"]["BorderSizePixel"] = 0;
+G2L["22f"]["BackgroundColor3"] = Color3.fromRGB(36, 36, 36);
+G2L["22f"]["Size"] = UDim2.new(1, 0, 1, 0);
+G2L["22f"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["22f"]["Name"] = [[bar]];
+
+
+-- StarterGui.KJUBAHUBB.hltbar.bar.UICorner
+G2L["230"] = Instance.new("UICorner", G2L["22f"]);
+G2L["230"]["CornerRadius"] = UDim.new(0.2, 0);
+
+
+-- StarterGui.KJUBAHUBB.hltbar.UIStroke
+G2L["231"] = Instance.new("UIStroke", G2L["22c"]);
+G2L["231"]["Thickness"] = 0.1;
+G2L["231"]["StrokeSizingMode"] = Enum.StrokeSizingMode.ScaledSize;
+G2L["231"]["Color"] = Color3.fromRGB(255, 255, 255);
+
+
+-- StarterGui.KJUBAHUBB.hltbar.UIStroke.rnbw
+G2L["232"] = Instance.new("LocalScript", G2L["231"]);
+G2L["232"]["Name"] = [[rnbw]];
+
+
+-- StarterGui.KJUBAHUBB.hltbar.hpnum
+G2L["233"] = Instance.new("TextLabel", G2L["22c"]);
+G2L["233"]["TextWrapped"] = true;
+G2L["233"]["BorderSizePixel"] = 0;
+G2L["233"]["TextSize"] = 14;
+G2L["233"]["TextScaled"] = true;
+G2L["233"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["233"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["233"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["233"]["BackgroundTransparency"] = 1;
+G2L["233"]["Size"] = UDim2.new(0.44845, 0, 0.79487, 0);
+G2L["233"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["233"]["Text"] = [[HP-100]];
+G2L["233"]["Name"] = [[hpnum]];
+G2L["233"]["Position"] = UDim2.new(0.2732, 0, 0.10256, 0);
+
+
+-- StarterGui.KJUBAHUBB.hltbar.hpnum.rnbw
+G2L["234"] = Instance.new("LocalScript", G2L["233"]);
+G2L["234"]["Name"] = [[rnbw]];
+
+
+-- StarterGui.KJUBAHUBB.sp
+G2L["235"] = Instance.new("TextLabel", G2L["1"]);
+G2L["235"]["TextWrapped"] = true;
+G2L["235"]["ZIndex"] = 5;
+G2L["235"]["BorderSizePixel"] = 0;
+G2L["235"]["TextSize"] = 14;
+G2L["235"]["TextScaled"] = true;
+G2L["235"]["BackgroundColor3"] = Color3.fromRGB(27, 27, 27);
+G2L["235"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["235"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["235"]["Size"] = UDim2.new(0.1681, 0, 0.02587, 0);
+G2L["235"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["235"]["Text"] = [[0]];
+G2L["235"]["Name"] = [[sp]];
+G2L["235"]["Position"] = UDim2.new(0.23387, 0, 0.85177, 0);
+
+
+-- StarterGui.KJUBAHUBB.sp.LocalScript
+G2L["236"] = Instance.new("LocalScript", G2L["235"]);
+
+
+
+-- StarterGui.KJUBAHUBB.sp.UICorner
+G2L["237"] = Instance.new("UICorner", G2L["235"]);
+G2L["237"]["CornerRadius"] = UDim.new(0.3, 0);
+
+
+-- StarterGui.KJUBAHUBB.sp.rnbw
+G2L["238"] = Instance.new("LocalScript", G2L["235"]);
+G2L["238"]["Name"] = [[rnbw]];
+
+
+-- StarterGui.KJUBAHUBB.sp.UIStroke
+G2L["239"] = Instance.new("UIStroke", G2L["235"]);
+G2L["239"]["Thickness"] = 0.1;
+G2L["239"]["StrokeSizingMode"] = Enum.StrokeSizingMode.ScaledSize;
+G2L["239"]["Color"] = Color3.fromRGB(255, 255, 255);
+G2L["239"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+
+
+-- StarterGui.KJUBAHUBB.sp.UIStroke.rnbw
+G2L["23a"] = Instance.new("LocalScript", G2L["239"]);
+G2L["23a"]["Name"] = [[rnbw]];
+
+
+-- StarterGui.KJUBAHUBB.pos1
+G2L["23b"] = Instance.new("TextLabel", G2L["1"]);
+G2L["23b"]["TextWrapped"] = true;
+G2L["23b"]["ZIndex"] = 5;
+G2L["23b"]["BorderSizePixel"] = 0;
+G2L["23b"]["TextSize"] = 14;
+G2L["23b"]["TextScaled"] = true;
+G2L["23b"]["BackgroundColor3"] = Color3.fromRGB(27, 27, 27);
+G2L["23b"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["23b"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["23b"]["Size"] = UDim2.new(0.168, 0, 0.0231, 0);
+G2L["23b"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["23b"]["Text"] = [[0]];
+G2L["23b"]["Name"] = [[pos1]];
+G2L["23b"]["Position"] = UDim2.new(0.59595, 0, 0.85242, 0);
+
+
+-- StarterGui.KJUBAHUBB.pos1.LocalScript
+G2L["23c"] = Instance.new("LocalScript", G2L["23b"]);
+
+
+
+-- StarterGui.KJUBAHUBB.pos1.UICorner
+G2L["23d"] = Instance.new("UICorner", G2L["23b"]);
+G2L["23d"]["CornerRadius"] = UDim.new(0.3, 0);
+
+
+-- StarterGui.KJUBAHUBB.pos1.rnbw
+G2L["23e"] = Instance.new("LocalScript", G2L["23b"]);
+G2L["23e"]["Name"] = [[rnbw]];
+
+
+-- StarterGui.KJUBAHUBB.pos1.UIStroke
+G2L["23f"] = Instance.new("UIStroke", G2L["23b"]);
+G2L["23f"]["Thickness"] = 0.1;
+G2L["23f"]["StrokeSizingMode"] = Enum.StrokeSizingMode.ScaledSize;
+G2L["23f"]["Color"] = Color3.fromRGB(255, 255, 255);
+G2L["23f"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+
+
+-- StarterGui.KJUBAHUBB.pos1.UIStroke.rnbw
+G2L["240"] = Instance.new("LocalScript", G2L["23f"]);
+G2L["240"]["Name"] = [[rnbw]];
+
+
 -- Require G2L wrapper
 local G2L_REQUIRE = require;
 local G2L_MODULES = {};
@@ -8784,13 +8942,18 @@ local script = G2L["19e"];
 	end
 	
 	local function applyCustomColor(targetColor)
-		local frameColor = subtract30(targetColor) -- O 30 tmavší pro Frame
+		local frameColor = subtract30(targetColor)
 	
 		for _, obj in pairs(KJUBAHUBB:GetDescendants()) do
-			if obj:IsA("Frame") then
+			if obj:IsA("Frame") and obj.Name ~= "bar" then
 				obj.BackgroundColor3 = frameColor
+			elseif obj:IsA("Frame") and obj.Name == "bar" then
+				obj.BackgroundColor3 = targetColor
 			elseif obj:IsA("TextButton") or obj:IsA("TextBox") or obj:IsA("ScrollingFrame") then
 				obj.BackgroundColor3 = targetColor
+				-- FIXED LINE BELOW:
+			elseif obj:IsA("TextLabel") and (obj.Name == "pos1" or obj.Name == "sp") then
+				obj.BackgroundColor3 = frameColor
 			end
 		end
 	end
@@ -9351,5 +9514,208 @@ local script = G2L["213"];
 	end
 end;
 task.spawn(C_213);
+-- StarterGui.KJUBAHUBB.hltbar.LocalScript
+local function C_22d()
+local script = G2L["22d"];
+	local player = game:GetService("Players").LocalPlayer
+	local background = script.Parent -- This is "hltbar"
+	local fillFrame = background:WaitForChild("bar") -- The moving green part
+	local hpText = background:WaitForChild("hpnum") -- The "HP: XXX" text
+	
+	-- Your specific "Full" scale dimensions
+	local MAX_SCALE_X = 1
+	local MAX_SCALE_Y = 1
+	
+	local function updateUI(humanoid)
+		local health = math.floor(humanoid.Health)
+		local maxHealth = math.floor(humanoid.MaxHealth)
+	
+		-- Calculate the percentage (0 to 1)
+		local healthRatio = math.clamp(health / maxHealth, 0, 1)
+	
+		-- 1. Update the Text
+		hpText.Text = "HP-" .. health
+	
+		-- 2. Update the Bar using Scale
+		-- We multiply the percentage by your specific max width (0.979)
+		fillFrame:TweenSize(
+			UDim2.new(healthRatio * MAX_SCALE_X, 0, MAX_SCALE_Y, 0),
+			Enum.EasingDirection.Out,
+			Enum.EasingStyle.Quad,
+			0.3,
+			true
+		)
+	end
+	
+	local function setupCharacter(char)
+		local humanoid = char:WaitForChild("Humanoid")
+	
+		-- Update immediately on spawn
+		updateUI(humanoid)
+	
+		-- Listen for health changes
+		humanoid.HealthChanged:Connect(function()
+			updateUI(humanoid)
+		end)
+	end
+	
+	-- Since ResetOnSpawn is OFF, we handle the character lifecycle
+	if player.Character then
+		setupCharacter(player.Character)
+	end
+	
+	player.CharacterAdded:Connect(setupCharacter)
+end;
+task.spawn(C_22d);
+-- StarterGui.KJUBAHUBB.hltbar.UIStroke.rnbw
+local function C_232()
+local script = G2L["232"];
+	local frm = script.Parent
+	local hue = 0
+	while true do
+		local hue = tick() % 10 / 10
+		local rainbowColor = Color3.fromHSV(hue, 1, 1)
+		frm.Color = rainbowColor
+		task.wait(0.03)
+	end
+end;
+task.spawn(C_232);
+-- StarterGui.KJUBAHUBB.hltbar.hpnum.rnbw
+local function C_234()
+local script = G2L["234"];
+	local frm = script.Parent
+	local hue = 0
+	while true do
+		local hue = tick() % 10 / 10
+		local rainbowColor = Color3.fromHSV(hue, 1, 1)
+		frm.TextColor3 = rainbowColor
+		task.wait(0.03)
+	end
+end;
+task.spawn(C_234);
+-- StarterGui.KJUBAHUBB.sp.LocalScript
+local function C_236()
+local script = G2L["236"];
+	local RunService = game:GetService("RunService")
+	local Players = game:GetService("Players")
+	
+	local player = Players.LocalPlayer
+	local label = script.Parent
+	
+	local lastPos = Vector3.new(0, 0, 0)
+	
+	-- CharacterAdded setup to ensure we have a starting position
+	player.CharacterAdded:Connect(function(char)
+		local root = char:WaitForChild("HumanoidRootPart", 5)
+		if root then
+			lastPos = root.Position
+		end
+	end)
+	
+	-- Main loop that runs every 0.1 seconds
+	while true do
+		local char = player.Character
+		local root = char and char:FindFirstChild("HumanoidRootPart")
+	
+		if root then
+			local currentPos = root.Position
+	
+			-- Distance / Time = Speed
+			-- We divide by 0.1 because that is how much time passed
+			local distance = (currentPos - lastPos).Magnitude
+			local speed = distance / 0.1
+	
+			-- WalkSpeed style display (Whole number)
+			label.Text = "Sps - " .. math.round(speed)
+	
+			lastPos = currentPos
+		else
+			label.Text = "Sps - 0"
+		end
+	
+		task.wait(0.1) -- The update delay you requested
+	end
+end;
+task.spawn(C_236);
+-- StarterGui.KJUBAHUBB.sp.rnbw
+local function C_238()
+local script = G2L["238"];
+	local frm = script.Parent
+	local hue = 0
+	while true do
+		local hue = tick() % 10 / 10
+		local rainbowColor = Color3.fromHSV(hue, 1, 1)
+		frm.TextColor3 = rainbowColor
+		task.wait(0.03)
+	end
+end;
+task.spawn(C_238);
+-- StarterGui.KJUBAHUBB.sp.UIStroke.rnbw
+local function C_23a()
+local script = G2L["23a"];
+	local frm = script.Parent
+	local hue = 0
+	while true do
+		local hue = tick() % 10 / 10
+		local rainbowColor = Color3.fromHSV(hue, 1, 1)
+		frm.Color = rainbowColor
+		task.wait(0.03)
+	end
+end;
+task.spawn(C_23a);
+-- StarterGui.KJUBAHUBB.pos1.LocalScript
+local function C_23c()
+local script = G2L["23c"];
+	local Players = game:GetService("Players")
+	local RunService = game:GetService("RunService")
+	
+	local player = Players.LocalPlayer
+	local textLabel = script.Parent -- Refers to the TextLabel
+	
+	-- Function to update the text
+	local function updateCoordinates()
+		local character = player.Character
+		if character then
+			-- Find the HumanoidRootPart to get accurate position
+			local hrp = character:FindFirstChild("HumanoidRootPart")
+			if hrp then
+				local pos = hrp.Position
+				-- Format: Position: X, Y, Z (rounded down)
+				textLabel.Text = string.format("X - %d | Y - %d | Z - %d", math.floor(pos.X), math.floor(pos.Y), math.floor(pos.Z))
+			end
+		end
+	end
+	
+	-- Update text every frame
+	RunService.Heartbeat:Connect(updateCoordinates)
+	
+end;
+task.spawn(C_23c);
+-- StarterGui.KJUBAHUBB.pos1.rnbw
+local function C_23e()
+local script = G2L["23e"];
+	local frm = script.Parent
+	local hue = 0
+	while true do
+		local hue = tick() % 10 / 10
+		local rainbowColor = Color3.fromHSV(hue, 1, 1)
+		frm.TextColor3 = rainbowColor
+		task.wait(0.03)
+	end
+end;
+task.spawn(C_23e);
+-- StarterGui.KJUBAHUBB.pos1.UIStroke.rnbw
+local function C_240()
+local script = G2L["240"];
+	local frm = script.Parent
+	local hue = 0
+	while true do
+		local hue = tick() % 10 / 10
+		local rainbowColor = Color3.fromHSV(hue, 1, 1)
+		frm.Color = rainbowColor
+		task.wait(0.03)
+	end
+end;
+task.spawn(C_240);
 
 return G2L["1"], require;
