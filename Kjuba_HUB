@@ -1721,7 +1721,7 @@ G2L["bb"]["ZIndex"] = 1000000;
 G2L["bb"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
 G2L["bb"]["Size"] = UDim2.new(0.079, 0, 0.065, 0);
 G2L["bb"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-G2L["bb"]["Text"] = [[30]];
+G2L["bb"]["Text"] = [[0]];
 G2L["bb"]["Name"] = [[G30]];
 G2L["bb"]["Position"] = UDim2.new(0.48626, 0, 0.27618, 0);
 
