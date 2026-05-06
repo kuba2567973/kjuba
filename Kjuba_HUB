@@ -6464,7 +6464,7 @@ local script = G2L["7e"];
 		local savedCFrame = hrp.CFrame
 	
 		-- Move real character far away
-		player.Character:MoveTo(Vector3.new(-25.95, SUPERBIG, 3537.55))
+		player.Character:MoveTo(Vector3.new(-25.95, 100, SUPERBIG))
 		task.wait(0.15)
 	
 		-- Create invisible seat
@@ -6473,7 +6473,7 @@ local script = G2L["7e"];
 		invisSeat.Anchored = false
 		invisSeat.CanCollide = false
 		invisSeat.Transparency = 1
-		invisSeat.Position = Vector3.new(-25.95, SUPERBIG, 3537.55)
+		invisSeat.Position = Vector3.new(-25.95, 100, SUPERBIG)
 		invisSeat.Parent = workspace
 	
 		-- Weld
