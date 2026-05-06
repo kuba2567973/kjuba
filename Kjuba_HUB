@@ -6417,8 +6417,8 @@ task.spawn(C_7a);
 -- StarterGui.KJUBAHUBB.GUI2.PL.pl.Folder.in.LocalScript
 local function C_7e()
 local script = G2L["7e"];
-	-- // Seat Invis - Stable Movement & Clean Walking
-	-- // Smooth Camera Fix (removes chubby/wobbly feeling)
+	-- // Seat Invis - Optimized for Prison Life
+	-- // Only activates physics/camera when the toggle is ON
 	
 	local Players = game:GetService("Players")
 	local RunService = game:GetService("RunService")
@@ -6426,11 +6426,15 @@ local script = G2L["7e"];
 	local player = Players.LocalPlayer
 	local camera = workspace.CurrentCamera
 	
-	local smoothness = 0.25
+	local smoothness = 0.3 
+	local invis_on = false
+	local invisSeat = nil
+	local invisWeld = nil
+	local BIG_NUMBAH = 100000 
 	
-	-- // CAMERA SYSTEM (Fixed Argument 3 error)
+	-- // CAMERA SYSTEM (Only runs if invis_on is true)
 	RunService.RenderStepped:Connect(function()
-		if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+		if invis_on and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
 			local hrp = player.Character.HumanoidRootPart
 			local targetPos = hrp.Position + Vector3.new(0, 1.5, 0)
 			local currentPos = camera.CFrame.Position
@@ -6440,25 +6444,19 @@ local script = G2L["7e"];
 		end
 	end)
 	
-	local invis_on = false
-	local invisSeat = nil
-	local invisWeld = nil
-	local BIG_NUMBAH = 100000 
-	
-	-- ✅ FIXED COLLISION & MASS (Fixes "Chubby" Walking)
-	local function applyStableCollision(character)
+	-- ✅ STABLE COLLISION (Restores default physics when OFF)
+	local function applyStableCollision(character, enable)
 		for _, obj in pairs(character:GetDescendants()) do
 			if obj:IsA("BasePart") then
-				-- Make parts weightless so they don't "drag" or "bounce"
-				obj.Massless = true
-	
-				-- Remove friction to prevent side-sliding/tripping
-				obj.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0, 0, 0)
-	
-				-- Only the HumanoidRootPart should handle collisions for movement
-				if obj.Name ~= "HumanoidRootPart" then
-					obj.CanCollide = false
-					obj.CanTouch = false -- Extra check to prevent physics jitters
+				if enable then
+					obj.Massless = true
+					if obj.Name ~= "HumanoidRootPart" then
+						obj.CanCollide = false
+					end
+				else
+					-- Restore Prison Life default physics
+					obj.Massless = false
+					obj.CanCollide = true
 				end
 			end
 		end
@@ -6475,8 +6473,10 @@ local script = G2L["7e"];
 	local function removeInvis()
 		if invisSeat then invisSeat:Destroy() invisSeat = nil end
 		if invisWeld then invisWeld:Destroy() invisWeld = nil end
+	
 		if player.Character then
 			local char = player.Character
+			applyStableCollision(char, false) -- RESTORE PHYSICS
 			local hrp = char:FindFirstChild("HumanoidRootPart")
 			if hrp then hrp.Transparency = 0 end
 			setTransparency(char, 0)
@@ -6490,6 +6490,8 @@ local script = G2L["7e"];
 	
 		local humanoid = char:FindFirstChildOfClass("Humanoid")
 		if humanoid and humanoid.SeatPart then return end
+	
+		applyStableCollision(char, true) -- ACTIVATE PHYSICS
 	
 		local savedCFrame = hrp.CFrame
 		char:MoveTo(Vector3.new(-25.95, BIG_NUMBAH, BIG_NUMBAH))
@@ -6518,7 +6520,11 @@ local script = G2L["7e"];
 	
 	local function toggleInvisibility()
 		invis_on = not invis_on
-		if invis_on then applyInvis() else removeInvis() end
+		if invis_on then 
+			applyInvis() 
+		else 
+			removeInvis() 
+		end
 	end
 	
 	script.Parent.MouseButton1Click:Connect(toggleInvisibility)
@@ -6538,13 +6544,11 @@ local script = G2L["7e"];
 	
 	player.CharacterAdded:Connect(function(char)
 		task.wait(0.6)
-		applyStableCollision(char)
 		setupVehicleCheck(char)
 		if invis_on then applyInvis() end
 	end)
 	
 	if player.Character then
-		applyStableCollision(player.Character)
 		setupVehicleCheck(player.Character)
 	end
 	
