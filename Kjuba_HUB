@@ -6426,7 +6426,7 @@ local script = G2L["7e"];
 	local player = Players.LocalPlayer
 	local camera = workspace.CurrentCamera
 	
-	local smoothness = 0.3
+	local smoothness = 0.25
 	
 	-- // CAMERA SYSTEM (Fixed Argument 3 error)
 	RunService.RenderStepped:Connect(function()
