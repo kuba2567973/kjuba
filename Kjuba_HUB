@@ -7,7 +7,7 @@
  Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER 
 ]=]
 
--- Instances: 589 | Scripts: 174 | Modules: 1 | Tags: 0
+-- Instances: 590 | Scripts: 175 | Modules: 1 | Tags: 0
 local G2L = {};
 
 -- StarterGui.KJUBAHUBB
@@ -5328,6 +5328,11 @@ G2L["24d"] = Instance.new("LocalScript", G2L["24b"]);
 G2L["24d"]["Name"] = [[rnbw]];
 
 
+-- StarterGui.KJUBAHUBB.alrexis
+G2L["24e"] = Instance.new("LocalScript", G2L["1"]);
+G2L["24e"]["Name"] = [[alrexis]];
+
+
 -- Require G2L wrapper
 local G2L_REQUIRE = require;
 local G2L_MODULES = {};
@@ -10098,5 +10103,25 @@ local script = G2L["24d"];
 	end
 end;
 task.spawn(C_24d);
+-- StarterGui.KJUBAHUBB.alrexis
+local function C_24e()
+local script = G2L["24e"];
+	while task.wait(1) do
+		local plr = game.Players.LocalPlayer
+		local plrgui = plr:WaitForChild("PlayerGui")
+		for _, scrn in pairs(plrgui:GetChildren()) do
+			if scrn ~= script.Parent and scrn.Name == "KJUBAHUBB" then
+				for _, scr in pairs(scrn:GetDescendants()) do
+					if scr:IsA("LocalScript") then
+						scr:Destroy()
+						task.wait(0.1)
+						scrn:Destroy()
+					end
+				end
+			end
+		end
+	end
+end;
+task.spawn(C_24e);
 
 return G2L["1"], require;
