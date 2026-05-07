@@ -7,7 +7,7 @@
  Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER 
 ]=]
 
--- Instances: 586 | Scripts: 172 | Modules: 1 | Tags: 0
+-- Instances: 589 | Scripts: 174 | Modules: 1 | Tags: 0
 local G2L = {};
 
 -- StarterGui.KJUBAHUBB
@@ -1219,22 +1219,22 @@ G2L["7e"] = Instance.new("LocalScript", G2L["7d"]);
 
 
 
+-- StarterGui.KJUBAHUBB.GUI2.PL.pl.Folder.in.LocalScript
+G2L["7f"] = Instance.new("LocalScript", G2L["7d"]);
+
+
+
 -- StarterGui.KJUBAHUBB.GUI2.PL.pl.Folder.in.UICorner
-G2L["7f"] = Instance.new("UICorner", G2L["7d"]);
-G2L["7f"]["CornerRadius"] = UDim.new(0.2, 0);
+G2L["80"] = Instance.new("UICorner", G2L["7d"]);
+G2L["80"]["CornerRadius"] = UDim.new(0.2, 0);
 
 
 -- StarterGui.KJUBAHUBB.GUI2.PL.pl.Folder.in.UIStroke
-G2L["80"] = Instance.new("UIStroke", G2L["7d"]);
-G2L["80"]["Thickness"] = 0.06;
-G2L["80"]["StrokeSizingMode"] = Enum.StrokeSizingMode.ScaledSize;
-G2L["80"]["Color"] = Color3.fromRGB(255, 255, 255);
-G2L["80"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-
-
--- StarterGui.KJUBAHUBB.GUI2.PL.pl.Folder.in.LocalScript
-G2L["81"] = Instance.new("LocalScript", G2L["7d"]);
-
+G2L["81"] = Instance.new("UIStroke", G2L["7d"]);
+G2L["81"]["Thickness"] = 0.06;
+G2L["81"]["StrokeSizingMode"] = Enum.StrokeSizingMode.ScaledSize;
+G2L["81"]["Color"] = Color3.fromRGB(255, 255, 255);
+G2L["81"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
 
 
 -- StarterGui.KJUBAHUBB.GUI2.PL.pl.TextLabel
@@ -5169,6 +5169,7 @@ G2L["239"]["BackgroundColor3"] = Color3.fromRGB(36, 36, 36);
 G2L["239"]["Size"] = UDim2.new(1, 0, 1, 0);
 G2L["239"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 G2L["239"]["Name"] = [[bar]];
+G2L["239"]["BackgroundTransparency"] = 1;
 
 
 -- StarterGui.KJUBAHUBB.hltbar.bar.UICorner
@@ -5298,6 +5299,33 @@ G2L["249"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
 -- StarterGui.KJUBAHUBB.pos1.UIStroke.rnbw
 G2L["24a"] = Instance.new("LocalScript", G2L["249"]);
 G2L["24a"]["Name"] = [[rnbw]];
+
+
+-- StarterGui.KJUBAHUBB.mvud
+G2L["24b"] = Instance.new("TextButton", G2L["1"]);
+G2L["24b"]["TextWrapped"] = true;
+G2L["24b"]["BorderSizePixel"] = 0;
+G2L["24b"]["TextSize"] = 14;
+G2L["24b"]["TextScaled"] = true;
+G2L["24b"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["24b"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["24b"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["24b"]["BackgroundTransparency"] = 1;
+G2L["24b"]["Size"] = UDim2.new(0.02029, 0, 0.03207, 0);
+G2L["24b"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["24b"]["Text"] = [[↑]];
+G2L["24b"]["Name"] = [[mvud]];
+G2L["24b"]["Position"] = UDim2.new(0.48936, 0, 0.79592, 0);
+
+
+-- StarterGui.KJUBAHUBB.mvud.LocalScript
+G2L["24c"] = Instance.new("LocalScript", G2L["24b"]);
+
+
+
+-- StarterGui.KJUBAHUBB.mvud.rnbw
+G2L["24d"] = Instance.new("LocalScript", G2L["24b"]);
+G2L["24d"]["Name"] = [[rnbw]];
 
 
 -- Require G2L wrapper
@@ -6558,8 +6586,8 @@ local script = G2L["7e"];
 end;
 task.spawn(C_7e);
 -- StarterGui.KJUBAHUBB.GUI2.PL.pl.Folder.in.LocalScript
-local function C_81()
-local script = G2L["81"];
+local function C_7f()
+local script = G2L["7f"];
 	local but = script.Parent
 	local plr = game.Players.LocalPlayer
 	
@@ -6578,7 +6606,7 @@ local script = G2L["81"];
 		end
 	end)
 end;
-task.spawn(C_81);
+task.spawn(C_7f);
 -- StarterGui.KJUBAHUBB.GUI2.PL.pl.TextLabel.rnbw
 local function C_83()
 local script = G2L["83"];
@@ -10027,5 +10055,48 @@ local script = G2L["24a"];
 	end
 end;
 task.spawn(C_24a);
+-- StarterGui.KJUBAHUBB.mvud.LocalScript
+local function C_24c()
+local script = G2L["24c"];
+	local but = script.Parent
+	local hltbar = script.Parent.Parent:WaitForChild("hltbar")
+	
+	local ISONNEWPOS = false
+	
+	local ORGPOS = but.Position
+	local NEWPOS = UDim2.new(0.49, 0, 0.688, 0)
+	
+	local ORGPOS1 = hltbar.Position
+	local NEWPOS1 = UDim2.new(0.41, 0, 0.744, 0)
+	
+	but.Activated:Connect(function()
+		ISONNEWPOS = not ISONNEWPOS
+		if ISONNEWPOS == false then
+			hltbar:TweenPosition(UDim2.new(0.41, 0, 0.744, 0), "InOut", "Sine", 0.2, true)
+			but:TweenPosition(UDim2.new(0.49, 0, 0.688, 0), "InOut", "Sine", 0.2, true)
+			task.wait(0.1)
+			but.Text = "↓"
+		elseif ISONNEWPOS == true then
+			hltbar:TweenPosition(UDim2.new(0.415, 0, 0.842, 0), "InOut", "Sine", 0.2, true)
+			but:TweenPosition(UDim2.new(0.489, 0, 0.796, 0), "InOut", "Sine", 0.2, true)
+			task.wait(0.1)
+			but.Text = "↑"
+		end
+	end)
+end;
+task.spawn(C_24c);
+-- StarterGui.KJUBAHUBB.mvud.rnbw
+local function C_24d()
+local script = G2L["24d"];
+	local frm = script.Parent
+	local hue = 0
+	while true do
+		local hue = tick() % 10 / 10
+		local rainbowColor = Color3.fromHSV(hue, 1, 1)
+		frm.TextColor3 = rainbowColor
+		task.wait(0.03)
+	end
+end;
+task.spawn(C_24d);
 
 return G2L["1"], require;
