@@ -5741,37 +5741,25 @@ task.spawn(C_14);
 -- StarterGui.KJUBAHUBB.GUI2.PL.pl.JIF.infjm
 local function C_15()
 local script = G2L["15"];
-	local UIS = game:GetService("UserInputService")
-	local RnSer = game:GetService("RunService")
-	local plr = game.Players.LocalPlayer
+	local UserInputService = game:GetService("UserInputService")
+	local player = game.Players.LocalPlayer
+	local button = script.Parent
 	
-	local SM = require(script:FindFirstAncestor("KJUBAHUBB"):WaitForChild("KJUBAHUBBSettingsManager"))
+	local enabled = false
 	
-	local but = script.Parent
-	
-	local INF_JUMP_ENABLED = SM.get("infjump_enabled", false)
-	but.Text = INF_JUMP_ENABLED and "InfJump-ON" or "InfJump-OFF"
-	
-	but.Activated:Connect(function()
-		INF_JUMP_ENABLED = not INF_JUMP_ENABLED
-		SM.set("infjump_enabled", INF_JUMP_ENABLED)
-		if 	INF_JUMP_ENABLED then
-			but.Text = "InfJump-ON"
-		else
-			but.Text = "InfJump-OFF"
-		end
+	button.Activated:Connect(function()
+		enabled = not enabled
+		button.Text = enabled and "InfJump-ON" or "InfJump-OFF"
 	end)
 	
-	SM.register("infjump_enabled", function() return INF_JUMP_ENABLED end)
+	UserInputService.JumpRequest:Connect(function()
+		if enabled then
+			local character = player.Character
+			local humanoid = character and character:FindFirstChildOfClass("Humanoid")
 	
-	UIS.JumpRequest:Connect(function()
-		if INF_JUMP_ENABLED then
-			local char = plr.Character
-			if char then
-				local hum = char.Humanoid
-				if hum then
-					hum:ChangeState(Enum.HumanoidStateType.Jumping)
-				end
+			if humanoid then
+				-- Tato metoda ti fungovala - resetuje stav postavy pro nový skok
+				humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
 			end
 		end
 	end)
