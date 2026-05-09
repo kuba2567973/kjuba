@@ -5575,7 +5575,7 @@ local script = G2L["7"];
 	
 	-- Toggle menu (N)
 	UserInputService.InputBegan:Connect(function(input, processed)
-		if not processed and input.KeyCode == Enum.KeyCode.N then
+		if not processed and input.KeyCode == Enum.KeyCode.J then
 			menuOpen = not menuOpen
 			mainFrame.Visible = menuOpen
 			update()
