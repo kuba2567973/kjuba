@@ -8294,6 +8294,7 @@ local script = G2L["159"];
 	local RS = game:GetService("RunService")
 	local Players = game:GetService("Players")
 	
+	-- Settings Manager (Ensures compatibility with your hub)
 	local SM = require(script:FindFirstAncestor("KJUBAHUBB"):WaitForChild("KJUBAHUBBSettingsManager"))
 	
 	local lp = Players.LocalPlayer
@@ -8305,10 +8306,10 @@ local script = G2L["159"];
 	local wallBtn = menu:WaitForChild("wchk")
 	local radiustxtbox = menu:WaitForChild("fvr")
 	local shwfvrad = menu:WaitForChild("shfv")
-	local rnbwBtn = script.Parent.Parent:WaitForChild("rawispn")
+	local rnbwBtn = menu:FindFirstChild("rawispn")
 	
 	---------------------------------------------------
-	-- LOCAL SETTINGS (WITH SAVE)
+	-- SETTINGS
 	---------------------------------------------------
 	local aim_On = SM.get("aimbot_enabled", false)
 	local aim_TC = SM.get("aimbot_teamcheck", true)
@@ -8325,27 +8326,15 @@ local script = G2L["159"];
 	---------------------------------------------------
 	-- UI SYNC
 	---------------------------------------------------
-	local function updateAimBtn()
-		aimBtn.Text = "Aimbot-" .. (aim_On and "ON" or "OFF")
-	end
-	
-	local function updateTeamBtn()
-		teamBtn.Text = "TeamCheck-" .. (aim_TC and "ON" or "OFF")
-	end
-	
-	local function updateWallBtn()
-		wallBtn.Text = "WallCheck-" .. (aim_WC and "ON" or "OFF")
-	end
-	
+	local function updateAimBtn() aimBtn.Text = "Aimbot-" .. (aim_On and "ON" or "OFF") end
+	local function updateTeamBtn() teamBtn.Text = "TeamCheck-" .. (aim_TC and "ON" or "OFF") end
+	local function updateWallBtn() wallBtn.Text = "WallCheck-" .. (aim_WC and "ON" or "OFF") end
 	local function updateFovUI()
 		shwfvrad.Text = "ShowFOV-" .. (showFOV and "ON" or "OFF")
 		radiustxtbox.Text = tostring(FOV_RADIUS)
 	end
-	
 	local function updateRnbwBtn()
-		if rnbwBtn then
-			rnbwBtn.Text = "RGB-" .. (rainbow and "ON" or "OFF")
-		end
+		if rnbwBtn then rnbwBtn.Text = "RGB-" .. (rainbow and "ON" or "OFF") end
 	end
 	
 	updateAimBtn()
@@ -8377,6 +8366,7 @@ local script = G2L["159"];
 		local viewport = cam.ViewportSize
 		fovCircle.Visible = showFOV
 		fovCircle.Position = UDim2.fromOffset(viewport.X / 2, viewport.Y / 2)
+		-- Diameter is Radius * 2
 		fovCircle.Size = UDim2.fromOffset(FOV_RADIUS * 2, FOV_RADIUS * 2)
 	
 		if rainbow then
@@ -8388,11 +8378,10 @@ local script = G2L["159"];
 	end
 	
 	---------------------------------------------------
-	-- CORE
+	-- UTILITIES
 	---------------------------------------------------
 	local function canSee(char, part)
 		if not aim_WC then return true end
-	
 		local params = RaycastParams.new()
 		params.FilterType = Enum.RaycastFilterType.Exclude
 		params.FilterDescendantsInstances = {lp.Character, cam}
@@ -8402,7 +8391,6 @@ local script = G2L["159"];
 			(part.Position - cam.CFrame.Position),
 			params
 		)
-	
 		return result == nil or result.Instance:IsDescendantOf(char)
 	end
 	
@@ -8414,99 +8402,57 @@ local script = G2L["159"];
 		local center = cam.ViewportSize / 2
 	
 		for _, plr in ipairs(Players:GetPlayers()) do
-			-- Added the ForceField check here
 			if plr == lp or (aim_TC and plr.Team == lp.Team) then continue end
 	
 			local char = plr.Character
 			local part = char and char:FindFirstChild(TARGET_PART)
 			local hum = char and char:FindFirstChildOfClass("Humanoid")
-			local hasFF = char and char:FindFirstChildOfClass("ForceField") -- Check for FF
+			local hasFF = char and char:FindFirstChildOfClass("ForceField")
 	
-			-- Ensure the player exists, is alive, and DOES NOT have a ForceField
 			if part and hum and hum.Health > 0 and not hasFF then
 				local screenPos, onScreen = cam:WorldToViewportPoint(part.Position)
 	
 				if onScreen then
 					local dist = (Vector2.new(screenPos.X, screenPos.Y) - center).Magnitude
-	
-					if dist < closestDist and canSee(char, part) then
+					-- Strict check: must be within the current FOV radius
+					if dist <= FOV_RADIUS and dist < closestDist and canSee(char, part) then
 						closestDist = dist
 						closestPart = part
 					end
 				end
 			end
 		end
-	
 		return closestPart
 	end
 	
 	---------------------------------------------------
-	-- BUTTONS
+	-- INPUTS / BUTTONS
 	---------------------------------------------------
-	aimBtn.MouseButton1Click:Connect(function()
-		aim_On = not aim_On
-		SM.set("aimbot_enabled", aim_On)
-		updateAimBtn()
-	end)
-	
-	teamBtn.MouseButton1Click:Connect(function()
-		aim_TC = not aim_TC
-		SM.set("aimbot_teamcheck", aim_TC)
-		updateTeamBtn()
-	end)
-	
-	wallBtn.MouseButton1Click:Connect(function()
-		aim_WC = not aim_WC
-		SM.set("aimbot_wallcheck", aim_WC)
-		updateWallBtn()
-	end)
-	
-	shwfvrad.MouseButton1Click:Connect(function()
-		showFOV = not showFOV
-		SM.set("aimbot_showfov", showFOV)
-		updateFovUI()
-	end)
-	
-	if rnbwBtn then
-		rnbwBtn.MouseButton1Click:Connect(function()
-			rainbow = not rainbow
-			SM.set("aimbot_rainbow", rainbow)
-			updateRnbwBtn()
-		end)
-	end
+	aimBtn.MouseButton1Click:Connect(function() aim_On = not aim_On; SM.set("aimbot_enabled", aim_On); updateAimBtn() end)
+	teamBtn.MouseButton1Click:Connect(function() aim_TC = not aim_TC; SM.set("aimbot_teamcheck", aim_TC); updateTeamBtn() end)
+	wallBtn.MouseButton1Click:Connect(function() aim_WC = not aim_WC; SM.set("aimbot_wallcheck", aim_WC); updateWallBtn() end)
+	shwfvrad.MouseButton1Click:Connect(function() showFOV = not showFOV; SM.set("aimbot_showfov", showFOV); updateFovUI() end)
+	if rnbwBtn then rnbwBtn.MouseButton1Click:Connect(function() rainbow = not rainbow; SM.set("aimbot_rainbow", rainbow); updateRnbwBtn() end) end
 	
 	radiustxtbox.FocusLost:Connect(function()
 		local num = tonumber(radiustxtbox.Text)
 		if num then
-			FOV_RADIUS = math.clamp(num, 1, 5000)
+			FOV_RADIUS = math.clamp(num, 1, 2000)
 			SM.set("aimbot_fov_radius", FOV_RADIUS)
 			updateFovUI()
 		end
 	end)
 	
-	-- Register for auto-save
-	SM.register("aimbot_enabled", function() return aim_On end)
-	SM.register("aimbot_teamcheck", function() return aim_TC end)
-	SM.register("aimbot_wallcheck", function() return aim_WC end)
-	SM.register("aimbot_showfov", function() return showFOV end)
-	SM.register("aimbot_rainbow", function() return rainbow end)
-	SM.register("aimbot_fov_radius", function() return FOV_RADIUS end)
-	
 	UIS.InputBegan:Connect(function(i, g)
-		if not g and i.UserInputType == Enum.UserInputType.MouseButton2 then
-			aiming = true
-		end
+		if not g and i.UserInputType == Enum.UserInputType.MouseButton2 then aiming = true end
 	end)
 	
 	UIS.InputEnded:Connect(function(i)
-		if i.UserInputType == Enum.UserInputType.MouseButton2 then
-			aiming = false
-			lockedTarget = nil
-		end
+		if i.UserInputType == Enum.UserInputType.MouseButton2 then aiming = false; lockedTarget = nil end
 	end)
 	
 	---------------------------------------------------
-	-- LOOP
+	-- MAIN LOOP
 	---------------------------------------------------
 	RS.RenderStepped:Connect(function()
 		updateVisuals()
@@ -8516,12 +8462,18 @@ local script = G2L["159"];
 			return
 		end
 	
+		-- Re-validate locked target every frame
 		if lockedTarget then
 			local char = lockedTarget.Parent
 			local hum = char and char:FindFirstChildOfClass("Humanoid")
 			local plr = Players:GetPlayerFromCharacter(char)
 	
-			if not hum or hum.Health <= 0 or (aim_TC and plr.Team == lp.Team) or not canSee(char, lockedTarget) then
+			-- FOV Check for current target
+			local screenPos, onScreen = cam:WorldToViewportPoint(lockedTarget.Position)
+			local center = cam.ViewportSize / 2
+			local dist = (Vector2.new(screenPos.X, screenPos.Y) - center).Magnitude
+	
+			if not onScreen or dist > FOV_RADIUS or not hum or hum.Health <= 0 or (aim_TC and plr.Team == lp.Team) or not canSee(char, lockedTarget) then
 				lockedTarget = nil
 			end
 		end
