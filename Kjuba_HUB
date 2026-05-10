@@ -5741,28 +5741,29 @@ task.spawn(C_14);
 -- StarterGui.KJUBAHUBB.GUI2.PL.pl.JIF.infjm
 local function C_15()
 local script = G2L["15"];
-	local UserInputService = game:GetService("UserInputService")
-	local player = game.Players.LocalPlayer
 	local button = script.Parent
+	local SM = require(script:FindFirstAncestor("KJUBAHUBB"):WaitForChild("KJUBAHUBBSettingsManager"))
 	
-	local enabled = false
+	-- Restore saved state
+	local InfiniteJumpON = SM.get("infjump_enabled", false)
+	button.Text = InfiniteJumpON and "InfJump-ON" or "InfJump-OFF"
 	
-	button.Activated:Connect(function()
-		enabled = not enabled
-		button.Text = enabled and "InfJump-ON" or "InfJump-OFF"
-	end)
+	local function onButtonClick()
+		InfiniteJumpON = not InfiniteJumpON
+		button.Text = InfiniteJumpON and "InfJump-ON" or "InfJump-OFF"
+		SM.set("infjump_enabled", InfiniteJumpON)
+	end
 	
-	UserInputService.JumpRequest:Connect(function()
-		if enabled then
-			local character = player.Character
-			local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+	button.Activated:Connect(onButtonClick)
 	
-			if humanoid then
-				-- Tato metoda ti fungovala - resetuje stav postavy pro nový skok
-				humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-			end
+	game:GetService("UserInputService").JumpRequest:Connect(function()
+		if InfiniteJumpON then
+			game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
 		end
 	end)
+	
+	-- Register getter for auto-save
+	SM.register("infjump_enabled", function() return InfiniteJumpON end)
 end;
 task.spawn(C_15);
 -- StarterGui.KJUBAHUBB.GUI2.PL.pl.JIF.UIStroke.rnbw
